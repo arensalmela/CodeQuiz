@@ -8,9 +8,29 @@
 </head>
 <body>
     <header>
-        <h4>Seconds left: <span id= "countDown">90</span></h4>
+        <h4 class ="timerSection">Seconds left: <span id= "countDown">90</span></h4>
         <button id="timerButton">Start Quiz</button>
     </header>
+    <div class = "quizSection">
+        <div class = "question" ></div>
+        <div class = "questionOptions"></div>
+            <div class = "option" id = "A"
+                onclick = "checkAnswer('A')">
+            </div>
+            <div class = "option" id = "B"
+                onclick = "checkAnswer('B')">
+            </div>
+            <div class = "option" id = "C"
+                onclick = "checkAnswer('C')">
+            </div>
+            <div class = "option" id = "C"
+                onclick = "checkAnswer('C')">
+            </div>
+            <div class = "option" id = "D"
+                onclick = "checkAnswer('D')">
+            </div>
+                
+    </div>
     <script src ="script.js"></script>
 </body>
 </html>
