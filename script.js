@@ -3,25 +3,25 @@ var questions = [
     {
         question: "Q1?",
         choices: ["answer1", "answer2", "answer3", "answer4"],
-        correct: "C"
+        correct: "answer3"
     },
 
     {
         question: "Q2",
         choices: ["answer1", "answer2", "answer3", "answer4"],
-        correct: "B" //correct needs to be index or match string
+        correct: "answer2" //correct needs to be index or match string
     },
 
     {
         question: "Q3",
         choices: ["answer1", "answer2", "answer3", "answer4"],
-        correct: "A"
+        correct: "answer1"
     },
 
     {
         question: "Q4",
         choices: ["answer1", "answer2", "answer3", "answer4"],
-        correct: "C"
+        correct: "answer3"
     },
 ]
 
@@ -36,11 +36,11 @@ var choicesEl = document.getElementById("choices") //button per choice
 var timerEl = document.getElementById("countDown")
 var feedbackEl = document.getElementById("feedback")
 var start = document.getElementById("start")
-//var questionEl = document.getElementById("quizSection")
+var questionEl = document.getElementById("quizSection")
 
 function getQuestion(){
 var currentQuestion = questions[currentQuestionIndex]
-var titleEl = document.getElementById("questionTitle")
+var titleEl = document.getElementById("quizTitle")
 titleEl.textContent = currentQuestion.question
 
 for (let i = 0; i < currentQuestion.choices.length; i++) {
@@ -60,7 +60,7 @@ for (let i = 0; i < currentQuestion.choices.length; i++) {
 }
 
 function questionClick(){
-    if (this.value !== question[currentQuestionIndex].correct){
+    if (this.value !== questions[currentQuestionIndex].correct){
         time -=15
         if (time<0){
             time = 0
