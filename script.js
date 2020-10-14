@@ -1,25 +1,25 @@
 var questions = [
 
     {
-        question: "Where do you link your external JS file within your HTML?",
+        question: "Q1?",
         choices: ["answer1", "answer2", "answer3", "answer4"],
         correct: "C"
     },
 
     {
-        question: "Where do you link your external JS file within your HTML?",
+        question: "Q2",
         choices: ["answer1", "answer2", "answer3", "answer4"],
         correct: "B" //correct needs to be index or match string
     },
 
     {
-        question: "Where do you link your external JS file within your HTML?",
+        question: "Q3",
         choices: ["answer1", "answer2", "answer3", "answer4"],
         correct: "A"
     },
 
     {
-        question: "Where do you link your external JS file within your HTML?",
+        question: "Q4",
         choices: ["answer1", "answer2", "answer3", "answer4"],
         correct: "C"
     },
