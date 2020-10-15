@@ -2,26 +2,26 @@ var questions = [
 
     {
         question: "Q1?",
-        choices: ["answer1", "answer2", "answer3", "answer4"],
-        correct: "answer3"
+        choices: ["Q1answer1", "Q1answer2", "Q1answer3", "Q1answer4"],
+        correct: "Q1answer3"
     },
 
     {
         question: "Q2",
-        choices: ["answer1", "answer2", "answer3", "answer4"],
-        correct: "answer2" //correct needs to be index or match string
+        choices: ["Q2answer1", "Q2answer2", "Q2answer3", "Q2answer4"],
+        correct: "Q2answer2"
     },
 
     {
         question: "Q3",
-        choices: ["answer1", "answer2", "answer3", "answer4"],
-        correct: "answer1"
+        choices: ["Q3answer1", "Q3answer2", "Q3answer3", "Q3answer4"],
+        correct: "Q3answer1"
     },
 
     {
         question: "Q4",
-        choices: ["answer1", "answer2", "answer3", "answer4"],
-        correct: "answer3"
+        choices: ["Q4answer1", "Q4answer2", "Q4answer3", "Q4answer4"],
+        correct: "Q4answer3"
     },
 ]
 
@@ -68,11 +68,14 @@ function questionClick(){
       timerEl.textContent = time
       feedbackEl.textContent = "Wrong" 
 
-    } else {
+    } 
+    
+    else {
         feedbackEl.textContent = "Correct"
     }
 
     feedbackEl.setAttribute("class", "feedback")
+    
     setTimeout(function(){
         feedback.setAttribute("class", "feedback hide")
     },1000)
