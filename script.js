@@ -1,3 +1,5 @@
+
+
 var questions = [
 
     {
@@ -38,28 +40,36 @@ var feedbackEl = document.getElementById("feedback")
 var start = document.getElementById("start")
 var questionEl = document.getElementById("quizSection")
 
+
+
 function getQuestion(){
 var currentQuestion = questions[currentQuestionIndex]
 var titleEl = document.getElementById("quizTitle")
 titleEl.textContent = currentQuestion.question
+choicesEl.innerHTML = "";
 
-for (let i = 0; i < currentQuestion.choices.length; i++) {
+for (let i = 0; i < currentQuestion.choices.length; i++) { //For each choices button
     var choice = currentQuestion.choices[i]
-    var choiceNode = document.createElement("button")
-    choiceNode.setAttribute("class", "choice")
-    choiceNode.setAttribute("value", choice)
-    choiceNode.textContent = i + 1 + "." + choice
-    choiceNode.addEventListener("click", questionClick)    
+    var choiceNode = document.createElement("button") //Creates a button for each choice
+    choiceNode.setAttribute("class", "choice") //Gives button class choice
+    choiceNode.setAttribute("value", choice) //Sets button value to choice
+    choiceNode.textContent = i + 1 + "." + choice //Adds number to each question
+    choiceNode.addEventListener("click", questionClick) //Click runs questionClick function  
     choicesEl.appendChild(choiceNode)
+   
+    
+
     console.log(choiceNode)
 
 }
+
 
   
 
 }
 
 function questionClick(){
+  
     if (this.value !== questions[currentQuestionIndex].correct){
         time -=15
         if (time<0){
@@ -73,12 +83,13 @@ function questionClick(){
     else {
         feedbackEl.textContent = "Correct"
     }
-
+    
+    
     feedbackEl.setAttribute("class", "feedback")
     
-    setTimeout(function(){
-        feedback.setAttribute("class", "feedback hide")
-    },1000)
+    // //setTimeout(function(){
+    //     feedback.setAttribute("class", "feedback hide")
+    // },1000)
 
     currentQuestionIndex ++ 
     if (currentQuestionIndex === questions.length){
@@ -103,23 +114,23 @@ start.addEventListener("click", getQuestion)
 
 //Timer with Button
 
-// document.addEventListener('DOMContentLoaded', () => {
-// const timeLeftDisplay = document.querySelector ("#countDown")
-// const startButton = document.querySelector("#timerButton")
-// let timeLeft = 90
+ document.addEventListener('DOMContentLoaded', () => {
+ const timeLeftDisplay = document.querySelector ("#countDown")
+ const startButton = document.querySelector("#timerButton")
+ let timeLeft = 90
 
-//     function timerCountDown(){
-//         setInterval(function(){
-//             if(timeLeft <= 0) {
-//             clearInterval(timeLeft = 0)
-//             }
-//         timeLeftDisplay.innerHTML = timeLeft
-//         timeLeft -=1
-//         }, 1000)  
-//     }
+     function timerCountDown(){
+         setInterval(function(){
+             if(timeLeft <= 0) {
+             clearInterval(timeLeft = 0)
+             }
+        timeLeftDisplay.innerHTML = timeLeft
+         timeLeft -=1
+         }, 1000)  
+     }
 
-// startButton.addEventListener("click", timerCountDown)
+ start.addEventListener("click", timerCountDown)
 
-// })
+ })
 
 
