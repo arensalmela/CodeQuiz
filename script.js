@@ -32,8 +32,9 @@ var questions = [
 
 
 var currentQuestionIndex = 0;
-var time = questions.length * 15
-var timerId; 
+var timeLeft = questions.length * 10
+var timerBanner = document.getElementById("timerBanner")
+//var timerID
 var choicesEl = document.getElementById("choices") //button per choice
 var timerEl = document.getElementById("countDown")
 var feedbackEl = document.getElementById("feedback")
@@ -53,7 +54,7 @@ for (let i = 0; i < currentQuestion.choices.length; i++) { //For each choices bu
     var choiceNode = document.createElement("button") //Creates a button for each choice
     choiceNode.setAttribute("class", "choice") //Gives button class choice
     choiceNode.setAttribute("value", choice) //Sets button value to choice
-    choiceNode.textContent = i + 1 + "." + choice //Adds number to each question
+    choiceNode.textContent = i + 1 + "." + choice //Adds number to each button
     choiceNode.addEventListener("click", questionClick) //Click runs questionClick function  
     choicesEl.appendChild(choiceNode)
    
@@ -69,13 +70,13 @@ for (let i = 0; i < currentQuestion.choices.length; i++) { //For each choices bu
 }
 
 function questionClick(){
-  
+  console.log(timeLeft)
     if (this.value !== questions[currentQuestionIndex].correct){
-        time -=15
-        if (time<0){
-            time = 0
+        timeLeft -=10
+        if (timeLeft<0){
+            timeLeft = 0
         }
-      timerEl.textContent = time
+      timerEl.textContent = timeLeft
       feedbackEl.textContent = "Wrong" 
 
     } 
@@ -87,26 +88,30 @@ function questionClick(){
     
     feedbackEl.setAttribute("class", "feedback")
     
-    // //setTimeout(function(){
-    //     feedback.setAttribute("class", "feedback hide")
-    // },1000)
+    setTimeout(function(){
+         feedbackEl.setAttribute("class", "feedbackHide")
+    },1000)
 
-    currentQuestionIndex ++ 
-    if (currentQuestionIndex === questions.length){
+    console.log(currentQuestionIndex)
+    console.log(questions.length)
+    if (currentQuestionIndex == 3){
         quizEnd()
     } else {
+        currentQuestionIndex ++
         getQuestion()
     }
 
 }
 
 function quizEnd(){
-clearInterval(timerId)
-var endScreenEl = document.getElementById("End-Screen")
-endScreenEl.removeAttribute("class")
-var finalScoreEl = document.getElementById("Final-Score")
-finalScoreEl.textContent = time
-//questionEl.setAttribute("class" , "hide")
+    clearInterval(timeLeft)
+    var endScreenEl = document.getElementById("End-Screen")
+    endScreenEl.removeAttribute("class")
+    var finalScoreEl = document.getElementById("Final-Score")
+    finalScoreEl.textContent = timeLeft
+    questionEl.setAttribute("class", "hide")
+    timerBanner.setAttribute("class", "hide")
+    start.setAttribute("class", "hide")
 }
 
 start.addEventListener("click", getQuestion) 
@@ -116,9 +121,7 @@ start.addEventListener("click", getQuestion)
 
  document.addEventListener('DOMContentLoaded', () => {
  const timeLeftDisplay = document.querySelector ("#countDown")
- const startButton = document.querySelector("#timerButton")
- let timeLeft = 90
-
+ //const startButton = document.querySelector("#timerButton")
      function timerCountDown(){
          setInterval(function(){
              if(timeLeft <= 0) {
