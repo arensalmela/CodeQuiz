@@ -63,7 +63,7 @@ function getQuestion(){
 
 function choiceClick(){
   console.log(timeLeft)
-    if (this.value !== questions[currentQuestionIndex].correct){ //Player will face 10 second penalty for wrong answer
+    if (this.value !== questions[currentQuestionIndex].correct){ //Player will face 5 second penalty for wrong answer
         timeLeft -=5
         if (timeLeft<0){
             timeLeft = 0

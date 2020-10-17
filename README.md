@@ -1,8 +1,8 @@
 # CodeQuiz
 
-## Project link
+## Project link https://arensalmela.github.io/CodeQuiz/
 
-###### collaborated wit , https://github.com/Ewager1 and https://github.com/mdjonestwo
+###### collaborated with, https://github.com/Ewager1 and https://github.com/mdjonestwo
 
 ## Screenshots posted below.
 
