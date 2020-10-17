@@ -34,7 +34,6 @@ var questions = [
 var currentQuestionIndex = 0;
 var timeLeft = questions.length * 10
 var timerBanner = document.getElementById("timerBanner")
-//var timerID
 var choicesEl = document.getElementById("choices") //button per choice
 var timerEl = document.getElementById("countDown")
 var feedbackEl = document.getElementById("feedback")
@@ -44,24 +43,20 @@ var questionEl = document.getElementById("quizSection")
 
 
 function getQuestion(){
-var currentQuestion = questions[currentQuestionIndex]
-var titleEl = document.getElementById("quizTitle")
-titleEl.textContent = currentQuestion.question
-choicesEl.innerHTML = "";
+    var currentQuestion = questions[currentQuestionIndex]
+    var titleEl = document.getElementById("quizTitle")
+    titleEl.textContent = currentQuestion.question
+    choicesEl.innerHTML = "";
 
-for (let i = 0; i < currentQuestion.choices.length; i++) { //For each choices button
-    var choice = currentQuestion.choices[i]
-    var choiceNode = document.createElement("button") //Creates a button for each choice
-    choiceNode.setAttribute("class", "choice") //Gives button class choice
-    choiceNode.setAttribute("value", choice) //Sets button value to choice
-    choiceNode.textContent = i + 1 + "." + choice //Adds number to each button
-    choiceNode.addEventListener("click", questionClick) //Click runs questionClick function  
-    choicesEl.appendChild(choiceNode)
-   
-    
-
-    console.log(choiceNode)
-
+    for (let i = 0; i < currentQuestion.choices.length; i++) { //For each choices button
+        var choice = currentQuestion.choices[i]
+        var choiceNode = document.createElement("button") //Creates a button for each choice
+        choiceNode.setAttribute("class", "choice") //Gives button class choice
+        choiceNode.setAttribute("value", choice) //Sets button value to choice
+        choiceNode.textContent = i + 1 + "." + choice //Adds number to each button
+        choiceNode.addEventListener("click", choiceClick) //Click runs questionClick function  
+        choicesEl.appendChild(choiceNode)
+        console.log(choiceNode)
 }
 
 
@@ -69,7 +64,7 @@ for (let i = 0; i < currentQuestion.choices.length; i++) { //For each choices bu
 
 }
 
-function questionClick(){
+function choiceClick(){
   console.log(timeLeft)
     if (this.value !== questions[currentQuestionIndex].correct){
         timeLeft -=10
@@ -88,9 +83,9 @@ function questionClick(){
     
     feedbackEl.setAttribute("class", "feedback")
     
-    setTimeout(function(){
-         feedbackEl.setAttribute("class", "feedbackHide")
-    },1000)
+    //setTimeout(function(){
+         //feedbackEl.setAttribute("class", "feedbackHide")
+    //},1000)
 
     console.log(currentQuestionIndex)
     console.log(questions.length)
@@ -105,10 +100,8 @@ function questionClick(){
 
 function quizEnd(){
     clearInterval(timeLeft)
-    var endScreenEl = document.getElementById("End-Screen")
-    endScreenEl.removeAttribute("class")
     var finalScoreEl = document.getElementById("Final-Score")
-    finalScoreEl.textContent = timeLeft
+    finalScoreEl.textContent = "Your score " + timeLeft
     questionEl.setAttribute("class", "hide")
     timerBanner.setAttribute("class", "hide")
     start.setAttribute("class", "hide")
@@ -137,3 +130,5 @@ start.addEventListener("click", getQuestion)
  })
 
 
+
+ const score = finalScoreEl
