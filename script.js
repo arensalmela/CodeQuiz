@@ -128,6 +128,7 @@ start.addEventListener("click", getQuestion)
 
  })
 
+ //Local storage and scoreboard attempt
 submitButton.addEventListener("click", function(){
     var name = document.getElementById("name").value
     var scoreData = {
@@ -136,7 +137,17 @@ submitButton.addEventListener("click", function(){
 
     }
     localStorage.setItem("scoreData", JSON.stringify(scoreData)) 
+    document.getElementById("scoreBoard").textContent = localStorage.getItem("scoreData")
+    // appendToStorage(scoreData)
+    document.getElementById("scoreBoard").setAttribute("class", "")
+    
 })
 
-document.getElementById("scoreBoard").textContent = localStorage.getItem("scoreData")
+function appendToStorage(scoreData){
+    var old = localStorage.getItem("scoreData");
+    if(old === null) old = "";
+    old.push(scoreData)
+    localStorage.setItem(old);
+}
+
 
