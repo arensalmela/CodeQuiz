@@ -3,34 +3,34 @@
 var questions = [
 
     {
-        question: "Q1?",
-        choices: ["Q1answer1", "Q1answer2", "Q1answer3", "Q1answer4"],
-        correct: "Q1answer3"
+        question: "Which of the following type of variable takes precedence over other if names are same?",
+        choices: ["both", "neither", "local variable" , "global variable"],
+        correct: "local variable"
     },
 
     {
-        question: "Q2",
-        choices: ["Q2answer1", "Q2answer2", "Q2answer3", "Q2answer4"],
-        correct: "Q2answer2"
+        question: "Which built-in method returns the characters in a string beginning at the specified location?",
+        choices: ["getSubstring()", "substr()", "slice()", "none of the above"],
+        correct: "substr()"
     },
 
     {
-        question: "Q3",
-        choices: ["Q3answer1", "Q3answer2", "Q3answer3", "Q3answer4"],
-        correct: "Q3answer1"
+        question: "Which of the following function of String object creates a string to be displayed in a big font as if it were in a <big> tag?",
+        choices: ["big()", "anchor()", "blink()", "italics()"],
+        correct: "big()"
     },
 
     {
-        question: "Q4",
-        choices: ["Q4answer1", "Q4answer2", "Q4answer3", "Q4answer4"],
-        correct: "Q4answer3"
+        question: "Which of the following function of Array object removes the last element from an array and returns that element?",
+        choices: ["push()", "join()", "pop()", "map()"],
+        correct: "pop()"
     },
 ]
 
 
 
 
-
+var intervalId 
 var currentQuestionIndex = 0;
 var timeLeft = questions.length * 10
 var timerBanner = document.getElementById("timerBanner")
@@ -59,15 +59,12 @@ function getQuestion(){
         console.log(choiceNode)
 }
 
-
-  
-
 }
 
 function choiceClick(){
   console.log(timeLeft)
-    if (this.value !== questions[currentQuestionIndex].correct){
-        timeLeft -=10
+    if (this.value !== questions[currentQuestionIndex].correct){ //Player will face 10 second penalty for wrong answer
+        timeLeft -=5
         if (timeLeft<0){
             timeLeft = 0
         }
@@ -83,9 +80,9 @@ function choiceClick(){
     
     feedbackEl.setAttribute("class", "feedback")
     
-    //setTimeout(function(){
-         //feedbackEl.setAttribute("class", "feedbackHide")
-    //},1000)
+    setTimeout(function(){
+         feedbackEl.setAttribute("class", "hide") //Question result hides after a second.
+    },1000)
 
     console.log(currentQuestionIndex)
     console.log(questions.length)
@@ -97,26 +94,28 @@ function choiceClick(){
     }
 
 }
-
+//Function to end quiz, hide elements, show score, and player name.
 function quizEnd(){
-    clearInterval(timeLeft)
+    clearInterval(intervalId)
+    document.getElementById("score").setAttribute("class", "")
     var finalScoreEl = document.getElementById("Final-Score")
     finalScoreEl.textContent = "Your score " + timeLeft
     questionEl.setAttribute("class", "hide")
     timerBanner.setAttribute("class", "hide")
     start.setAttribute("class", "hide")
+    
 }
 
 start.addEventListener("click", getQuestion) 
 
 
-//Timer with Button
+//Timer 
 
  document.addEventListener('DOMContentLoaded', () => {
  const timeLeftDisplay = document.querySelector ("#countDown")
- //const startButton = document.querySelector("#timerButton")
+ 
      function timerCountDown(){
-         setInterval(function(){
+         intervalId = setInterval(function(){
              if(timeLeft <= 0) {
              clearInterval(timeLeft = 0)
              }
@@ -129,6 +128,15 @@ start.addEventListener("click", getQuestion)
 
  })
 
+submitButton.addEventListener("click", function(){
+    var name = document.getElementById("name").value
+    var scoreData = {
+    name: name,
+    score: timeLeft
 
+    }
+    localStorage.setItem("scoreData", JSON.stringify(scoreData)) 
+})
 
- const score = finalScoreEl
+document.getElementById("scoreBoard").textContent = localStorage.getItem("scoreData")
+
